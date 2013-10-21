@@ -1,0 +1,14 @@
+{
+  "name": "enumer",
+  "version": "0.1.0",
+  "description": "recursive object enumeration",
+  "main": "enumer.js",
+  "dependencies": {
+    "isit": "*"
+  },
+  "keywords": [
+    "enumeration"
+  ],
+  "author": "Pau Fracés <pfraces@gmail.com>",
+  "license": "MIT"
+}
