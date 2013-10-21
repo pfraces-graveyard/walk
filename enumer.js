@@ -1,4 +1,4 @@
-var it = require('it');
+var isit = require('isit');
 
 var Enumer = function (obj) {
   this.root = obj;
@@ -6,7 +6,7 @@ var Enumer = function (obj) {
 
 var enumer = function (callback, filter) {
   var step = function (node, stats) {
-    var is = it(node).is,
+    var is = isit(node),
       stats = stats || {},
       path = stats.path  || [],
       parent;
@@ -38,6 +38,15 @@ var enumer = function (callback, filter) {
   return step;
 };
 
+var emulate = function (obj, is) {
+  is = is || isit(obj);
+
+  if (is.object) return {};
+  if (is.array) return [];
+  if (is.function) return obj.bind();
+  return obj;
+}
+
 Enumer.prototype.each = function (callback) {
   enumer(callback)(this.root);
 };
@@ -49,13 +58,11 @@ Enumer.prototype.filter = function (filter) {
     var path = stats.path,
       is = stats.is,
       curr,
-      acc;
+      acc,
+      emulation = emulate(node, is);
 
     if (!path.length) {
-      if (is.object) filtered = {};
-      else if (is.array) filtered = [];
-      else if (is.function) filtered = node.bind();
-      else filtered = node;
+      filtered = emulation;
       return;
     }
 
@@ -65,12 +72,7 @@ Enumer.prototype.filter = function (filter) {
       curr = path[i];
 
       if (i < l - 1) acc = acc[curr];
-      else {
-        if (is.object) acc[curr] = {};
-        else if (is.array) acc[curr] = [];
-        else if (is.function) acc[curr] = node.bind();
-        else acc[curr] = node;
-      }
+      else acc[curr] = emulation;
     }
   };
 
