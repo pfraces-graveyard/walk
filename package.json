@@ -1,7 +1,7 @@
 {
   "name": "enumer",
-  "version": "0.1.1",
-  "description": "recursive object enumeration",
+  "version": "0.2.0",
+  "description": "async recursive object enumeration",
   "main": "enumer.js",
   "dependencies": {
     "isit": "*"

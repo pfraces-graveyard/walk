@@ -1,14 +1,15 @@
 # enumer
 
-Recursive object enumeration
+Async recursive object enumeration
 
-# usage
+# Usage
 
 ```js
 var enumer = require('enumer');
 
-enumer([1,2,3]).each(function (node) {
-  console.log(node);
+enumer([1,2,3], function (stats, next) {
+  console.log(stats.node);
+  next();
 });
 ```
 
@@ -20,8 +21,9 @@ enumer([1,2,3]).each(function (node) {
 ```js
 var enumer = require('enumer');
 
-enumer({ a: 1, b: 2, c: 3 }).each(function (node, stats) {
-  console.log(stats.index, node);
+enumer({ a: 1, b: 2, c: 3 }, function (stats, next) {
+  console.log(stats.index, stats.node);
+  setTimeout(next, 0);
 });
 ```
 
@@ -29,3 +31,42 @@ enumer({ a: 1, b: 2, c: 3 }).each(function (node, stats) {
     a 1
     b 2
     c 3
+
+```js
+var enumer = require('enumer');
+
+var obj = {
+  a: 1,
+  b: {
+    x: 11,
+    y: [ 111, 112 ],
+    z: 12
+  },
+  c: 2
+};
+
+enumer(obj, function (stats, next) {
+  if (stats.is.number) {
+    console.log(stats.node);
+  }
+
+  next();
+});
+```
+
+    1
+    11
+    111
+    112
+    12
+    2
+
+# Install
+
+    npm install enumer
+
+# Motivation
+
+Versatile object enumeration, simpler than [traverse][1]
+
+[1]: https://github.com/substack/traverse
