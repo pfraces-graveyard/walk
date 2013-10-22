@@ -34,7 +34,7 @@ enumer([1,2,3], function (stats, next) {
 
 ```js
 var enumer = require('enumer'),
-  itis = require('isit');
+  isit = require('isit');
 
 var obj = {
   a: 1,
@@ -47,7 +47,7 @@ var obj = {
 };
 
 enumer(obj, function (stats, next) {
-  var is = itis(stats.node);
+  var is = isit(stats.node);
 
   if (is.number) {
     console.log(stats.node);
