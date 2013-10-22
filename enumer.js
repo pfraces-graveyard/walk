@@ -13,7 +13,8 @@ module.exports = function (obj, callback) {
     var stats = {
       node: node,
       path: path,
-      index: path[path.length - 1]
+      index: path[path.length - 1],
+      root: obj
     };
 
     callback(stats, next);
