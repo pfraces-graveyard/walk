@@ -1,29 +1,15 @@
 # enumer
 
-Async recursive object enumeration
+Recursive object enumeration
 
 # Usage
 
 ```js
 var enumer = require('enumer');
 
-enumer([1,2,3], function (stats, next) {
-  console.log(stats.node);
-  next();
-});
-```
-
-    [ 1, 2, 3 ]
-    1
-    2
-    3
-
-```js
-var enumer = require('enumer');
-
 enumer({ a: 1, b: 2, c: 3 }, function (stats, next) {
   console.log(stats.index, stats.node);
-  setTimeout(next, 0);
+  next();
 });
 ```
 
@@ -34,6 +20,21 @@ enumer({ a: 1, b: 2, c: 3 }, function (stats, next) {
 
 ```js
 var enumer = require('enumer');
+
+enumer([1,2,3], function (stats, next) {
+  console.log(stats.node);
+  setTimeout(next, 0);
+});
+```
+
+    [ 1, 2, 3 ]
+    1
+    2
+    3
+
+```js
+var enumer = require('enumer'),
+  is = require('isit');
 
 var obj = {
   a: 1,
@@ -46,7 +47,7 @@ var obj = {
 };
 
 enumer(obj, function (stats, next) {
-  if (stats.is.number) {
+  if (is(stats.node).number) {
     console.log(stats.node);
   }
 
