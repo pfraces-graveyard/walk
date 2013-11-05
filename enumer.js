@@ -1,24 +1,19 @@
 module.exports = function (obj, callback) {
   var path = [];
 
-  var step = function (node) {
-    var index;
-    
-    if (path.length) {
-      index = path[path.length - 1];
-    }
-    
+  var step = function (node, index, parent) {
     var stats = {
       node: node,
-      path: path,
       index: index,
+      parent: parent,
+      path: path,
       root: obj
     };
     
     var next = function () {
       for (prop in node) {
         path.push(prop);
-        step(node[prop]);
+        step(node[prop], prop, node);
         path.pop();
       }
     };

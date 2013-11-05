@@ -1,6 +1,6 @@
 {
   "name": "enumer",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "recursive object enumeration",
   "main": "enumer.js",
   "dependencies": {},
