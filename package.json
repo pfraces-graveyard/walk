@@ -1,19 +1,22 @@
 {
-  "name": "lisa",
+  "name": "u.walk",
   "version": "0.2.6",
-  "description": "Async object traversal",
-  "main": "lisa.js",
+  "description": "Oject traversal",
+  "main": "walk.js",
   "dependencies": {
-    "ich": "*"
+    "u.each": "*"
   },
   "keywords": [
     "object",
     "array",
-    "tree",
     "enumeration",
     "traverse",
     "async",
-    "foreach"
+    "walk",
+    "tree",
+    "node",
+    "foreach",
+    "each"
   ],
   "author": "Pau Fracés <pfraces@gmail.com>",
   "license": "MIT"

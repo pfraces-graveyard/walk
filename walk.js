@@ -1,4 +1,4 @@
-var ich = require('ich');
+var each = require('u.each');
 
 module.exports = function (obj, callback) {
   var path = [],
@@ -18,7 +18,7 @@ module.exports = function (obj, callback) {
     var next = function () {
       parents.push(node);
 
-      ich(node, function (item, index) {
+      each(node, function (item, index) {
         path.push(index);
         step(item, index);
         path.pop();

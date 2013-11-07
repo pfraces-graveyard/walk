@@ -1,15 +1,13 @@
-# lisa
+# walk
 
-LISt nodes Asynchronously
-
-Async object traversal
+Object traversal
 
 # Usage
 
 ```js
-var lisa = require('lisa');
+var walk = require('u.walk');
 
-lisa({ a: 1, b: 2, c: 3 }, function (stats, next) {
+walk({ a: 1, b: 2, c: 3 }, function (stats, next) {
   console.log(stats.index, stats.node);
   next();
 });
@@ -21,9 +19,9 @@ lisa({ a: 1, b: 2, c: 3 }, function (stats, next) {
     c 3
 
 ```js
-var lisa = require('lisa');
+var walk = require('u.walk');
 
-lisa([1,2,3], function (stats, next) {
+walk([1,2,3], function (stats, next) {
   console.log(stats.node);
   setTimeout(next, 0);
 });
@@ -35,8 +33,8 @@ lisa([1,2,3], function (stats, next) {
     3
 
 ```js
-var lisa = require('lisa'),
-  tof = require('tof');
+var walk = require('u.walk'),
+  is = require('u.is');
 
 var obj = {
   a: 1,
@@ -48,14 +46,14 @@ var obj = {
   c: 2
 };
 
-lisa(obj, function (stats, next) {
-  var is = tof(stats.node);
+walk(obj, function (stats, next) {
+  var node = stats.node;
 
-  if (is.number()) {
-    console.log(stats.node);
+  if (is.number(node)) {
+    console.log(node);
   }
 
-  if (!is.array()) {
+  if (!is.array(node)) {
     next();
   };
 });
@@ -68,7 +66,7 @@ lisa(obj, function (stats, next) {
 
 # Install
 
-    npm install lisa
+    npm install u.walk
 
 # Motivation
 
