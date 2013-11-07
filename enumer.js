@@ -1,27 +1,34 @@
+var lap = require('lap'),
+  tof = require('tof');
+
 module.exports = function (obj, callback) {
   var path = [],
     parents = [];
 
-  var step = function (node, index, parent) {
+  var step = function (node, index) {
     if (parents.indexOf(node) >= 0) return;
+
+    var is = tof(node);
 
     var stats = {
       node: node,
       index: index,
-      parent: parent,
       parents: parents,
       path: path,
-      root: obj
+      root: obj,
+      is: is
     };
     
     var next = function () {
+      if (is.primitive()) return;
+
       parents.push(node);
 
-      for (prop in node) {
-        path.push(prop);
-        step(node[prop], prop, node);
+      lap(node, function (item, index) {
+        path.push(index);
+        step(item, index);
         path.pop();
-      }
+      });
 
       parents.pop();
     };

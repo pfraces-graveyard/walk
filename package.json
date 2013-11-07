@@ -3,7 +3,9 @@
   "version": "0.2.5",
   "description": "recursive object enumeration",
   "main": "enumer.js",
-  "dependencies": {},
+  "dependencies": {
+    "tof": "*"
+  },
   "keywords": [
     "object",
     "enumeration"
