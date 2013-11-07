@@ -2,7 +2,7 @@
 
 LISt nodes Asynchronously
 
-Traverse objects and arrays
+Async object traversal
 
 # Usage
 
@@ -72,7 +72,7 @@ lisa(obj, function (stats, next) {
 
 # Motivation
 
-Straightforward object async traversal
+Straightforward object traversal
 
 # Alternatives
 
