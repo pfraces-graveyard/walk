@@ -1,13 +1,15 @@
-# enumer
+# lisa
 
-Recursive object enumeration
+LISt nodes Asynchronously
+
+Traverse objects and arrays
 
 # Usage
 
 ```js
-var enumer = require('enumer');
+var lisa = require('lisa');
 
-enumer({ a: 1, b: 2, c: 3 }, function (stats, next) {
+lisa({ a: 1, b: 2, c: 3 }, function (stats, next) {
   console.log(stats.index, stats.node);
   next();
 });
@@ -19,9 +21,9 @@ enumer({ a: 1, b: 2, c: 3 }, function (stats, next) {
     c 3
 
 ```js
-var enumer = require('enumer');
+var lisa = require('lisa');
 
-enumer([1,2,3], function (stats, next) {
+lisa([1,2,3], function (stats, next) {
   console.log(stats.node);
   setTimeout(next, 0);
 });
@@ -33,8 +35,8 @@ enumer([1,2,3], function (stats, next) {
     3
 
 ```js
-var enumer = require('enumer'),
-  isit = require('isit');
+var lisa = require('lisa'),
+  tof = require('tof');
 
 var obj = {
   a: 1,
@@ -46,14 +48,14 @@ var obj = {
   c: 2
 };
 
-enumer(obj, function (stats, next) {
-  var is = isit(stats.node);
+lisa(obj, function (stats, next) {
+  var is = tof(stats.node);
 
-  if (is.number) {
+  if (is.number()) {
     console.log(stats.node);
   }
 
-  if (!is.array) {
+  if (!is.array()) {
     next();
   };
 });
@@ -66,10 +68,14 @@ enumer(obj, function (stats, next) {
 
 # Install
 
-    npm install enumer
+    npm install lisa
 
 # Motivation
 
-Versatile object enumeration, simpler than [traverse][1]
+Straightforward object async traversal
+
+# Alternatives
+
+*   [traverse][1]
 
 [1]: https://github.com/substack/traverse

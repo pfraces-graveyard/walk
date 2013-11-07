@@ -1,5 +1,4 @@
-var lap = require('lap'),
-  tof = require('tof');
+var ich = require('ich');
 
 module.exports = function (obj, callback) {
   var path = [],
@@ -8,23 +7,18 @@ module.exports = function (obj, callback) {
   var step = function (node, index) {
     if (parents.indexOf(node) >= 0) return;
 
-    var is = tof(node);
-
     var stats = {
       node: node,
       index: index,
       parents: parents,
       path: path,
-      root: obj,
-      is: is
+      root: obj
     };
     
     var next = function () {
-      if (is.primitive()) return;
-
       parents.push(node);
 
-      lap(node, function (item, index) {
+      ich(node, function (item, index) {
         path.push(index);
         step(item, index);
         path.pop();

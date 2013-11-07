@@ -1,14 +1,19 @@
 {
-  "name": "enumer",
-  "version": "0.2.5",
-  "description": "recursive object enumeration",
-  "main": "enumer.js",
+  "name": "lisa",
+  "version": "0.2.6",
+  "description": "Async object traversal",
+  "main": "lisa.js",
   "dependencies": {
-    "tof": "*"
+    "ich": "*"
   },
   "keywords": [
     "object",
-    "enumeration"
+    "array",
+    "tree",
+    "enumeration",
+    "traverse",
+    "async",
+    "foreach"
   ],
   "author": "Pau Fracés <pfraces@gmail.com>",
   "license": "MIT"
